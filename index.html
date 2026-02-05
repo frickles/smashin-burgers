@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smashin' Burgers — Söderhamns bästa smash burgers</title>
+  <meta name="description" content="Handgjorda smash burgers i Söderhamn. Från foodtruck till restaurang vid ån. Kom och smaka skillnaden — 4.4★ på Google med 259 recensioner.">
+  <meta property="og:title" content="Smashin' Burgers — Smash burgers i Söderhamn">
+  <meta property="og:description" content="Handgjorda smash burgers vid ån i Söderhamn. Från 114 kr. Öppet mån–lör.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="sv_SE">
+  <meta property="og:image" content="/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍔</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --off-black: #141414;
+      --charcoal: #1e1e1e;
+      --smoke: #2a2a2a;
+      --ash: #8a8a8a;
+      --cream: #f5f0e8;
+      --white: #fafafa;
+      --amber: #e8a020;
+      --amber-bright: #f0b840;
+      --ember: #c44a20;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Skip to content */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--amber);
+      color: var(--black);
+      padding: 0.75rem 1.5rem;
+      z-index: 9999;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .skip-link:focus {
+      top: 1rem;
+      outline: 3px solid var(--cream);
+      outline-offset: 2px;
+    }
+
+    /* Focus styles */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+      outline: 3px solid var(--amber);
+      outline-offset: 3px;
+    }
+
+    /* === NAVIGATION === */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(232,160,32,0.1);
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      padding: 0.6rem 2rem;
+      background: rgba(10,10,10,0.95);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      color: var(--cream);
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--amber); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--ash);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--amber);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover, .nav-links a:focus { color: var(--cream); }
+    .nav-links a:hover::after, .nav-links a:focus::after { width: 100%; }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    /* === HERO === */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.3) contrast(1.1);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,10,10,0.6) 0%,
+        rgba(10,10,10,0.2) 40%,
+        rgba(10,10,10,0.8) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+      display: inline-block;
+    }
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      color: var(--ash);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: var(--amber-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(232,160,32,0.3);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(245,240,232,0.2);
+    }
+    .btn-ghost:hover {
+      border-color: var(--cream);
+      background: rgba(245,240,232,0.05);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      z-index: 1;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--ash);
+      text-align: right;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.2s forwards;
+    }
+    .hero-badge strong {
+      color: var(--amber);
+      font-size: 1.6rem;
+      font-family: var(--font-display);
+      display: block;
+      letter-spacing: 0.05em;
+    }
+
+    /* === SECTION STYLES === */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-tag::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    /* === MENU === */
+    #meny { background: var(--off-black); }
+    .menu-grid {
+      display: grid;
+      gap: 3rem;
+    }
+    .menu-category {
+      border-bottom: 1px solid var(--smoke);
+      padding-bottom: 3rem;
+    }
+    .menu-category:last-child { border-bottom: none; }
+    .menu-category-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+    .menu-category-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    /* Burger sizes */
+    .size-grid {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .size-card {
+      background: var(--charcoal);
+      padding: 1.25rem 1.75rem;
+      text-align: center;
+      flex: 1;
+      min-width: 100px;
+      border: 1px solid var(--smoke);
+      transition: all 0.3s;
+    }
+    .size-card:hover {
+      border-color: var(--amber);
+      transform: translateY(-2px);
+    }
+    .size-card .weight {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--cream);
+      display: block;
+      line-height: 1;
+    }
+    .size-card .weight small {
+      font-size: 0.9rem;
+      color: var(--ash);
+    }
+    .size-card .price {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      color: var(--amber);
+      display: block;
+      margin-top: 0.5rem;
+    }
+    .size-card .combo {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--ash);
+      display: block;
+      margin-top: 0.25rem;
+    }
+    .size-recommend {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ember);
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      padding: 0.75rem 1rem;
+      background: rgba(196,74,32,0.1);
+      border-left: 3px solid var(--ember);
+      display: inline-block;
+    }
+
+    .burger-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1rem;
+    }
+    .burger-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1.25rem 1.5rem;
+      background: var(--charcoal);
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+    .burger-item:hover {
+      border-color: rgba(232,160,32,0.2);
+      background: var(--smoke);
+    }
+    .burger-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--amber);
+      line-height: 1;
+      margin-right: 1rem;
+      min-width: 30px;
+    }
+    .burger-info { flex: 1; }
+    .burger-desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.5;
+    }
+
+    /* Other menu items */
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+    }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.25rem;
+      background: var(--charcoal);
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+    .menu-item:hover {
+      border-color: rgba(232,160,32,0.15);
+    }
+    .menu-item-name {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .menu-item-detail {
+      font-size: 0.75rem;
+      color: var(--ash);
+    }
+    .menu-item-price {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--amber);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    /* === SOCIAL PROOF === */
+    #omdomen {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    #omdomen::before {
+      content: '"';
+      position: absolute;
+      top: -2rem;
+      right: 5%;
+      font-family: var(--font-display);
+      font-size: 40rem;
+      color: rgba(232,160,32,0.03);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .trust-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .trust-stars {
+      font-size: 2rem;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+    .trust-score {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      letter-spacing: 0.05em;
+    }
+    .trust-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ash);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .review-card {
+      padding: 2.5rem;
+      background: var(--off-black);
+      border: 1px solid var(--smoke);
+      position: relative;
+      transition: all 0.3s;
+    }
+    .review-card:hover {
+      border-color: rgba(232,160,32,0.3);
+      transform: translateY(-4px);
+    }
+    .review-card::before {
+      content: '"';
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--amber);
+      opacity: 0.2;
+      position: absolute;
+      top: 0.5rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+    .review-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    .review-source {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* === HITTA HIT === */
+    #hitta-hit { background: var(--off-black); }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+    .hours-table tr {
+      border-bottom: 1px solid var(--smoke);
+    }
+    .hours-table td {
+      padding: 0.75rem 0;
+      font-size: 0.9rem;
+    }
+    .hours-table td:first-child {
+      font-weight: 500;
+    }
+    .hours-table td:last-child {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--ash);
+    }
+    .hours-table tr.today td {
+      color: var(--amber);
+    }
+    .hours-table tr.closed td:last-child {
+      color: var(--ember);
+    }
+    .address-block {
+      margin-top: 2rem;
+    }
+    .address-block p {
+      color: var(--ash);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    .address-block a {
+      color: var(--amber);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    .address-block a:hover { text-decoration: underline; }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 350px;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--smoke);
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 30px, var(--smoke) 30px, var(--smoke) 31px),
+        repeating-linear-gradient(90deg, transparent, transparent 30px, var(--smoke) 30px, var(--smoke) 31px);
+      opacity: 0.3;
+    }
+    .map-pin {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .map-pin-icon {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .map-pin-text {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+    }
+
+    /* === CONTACT === */
+    #kontakt { background: var(--black); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-text p {
+      color: var(--ash);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .contact-email {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--amber);
+      text-decoration: none;
+    }
+    .contact-email:hover { text-decoration: underline; }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: var(--charcoal);
+      border: 1px solid var(--smoke);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--amber);
+      outline: none;
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--ash);
+      opacity: 0.5;
+    }
+    .gdpr-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .gdpr-check input[type="checkbox"] {
+      margin-top: 0.3rem;
+      accent-color: var(--amber);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .gdpr-check span {
+      font-size: 0.8rem;
+      color: var(--ash);
+      line-height: 1.5;
+    }
+    .gdpr-check a {
+      color: var(--amber);
+      text-decoration: underline;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 3rem;
+      background: rgba(232,160,32,0.05);
+      border: 1px solid rgba(232,160,32,0.2);
+    }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+    .form-success p {
+      color: var(--ash);
+      font-size: 0.9rem;
+    }
+
+    /* === FOOTER === */
+    footer {
+      padding: 3rem 2rem;
+      background: var(--off-black);
+      border-top: 1px solid var(--smoke);
+      text-align: center;
+    }
+    .footer-top {
+      margin-bottom: 1.5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+    .footer-logo span { color: var(--amber); }
+    .footer-info {
+      font-size: 0.8rem;
+      color: var(--ash);
+      line-height: 1.8;
+    }
+    .footer-info a {
+      color: var(--ash);
+      text-decoration: none;
+    }
+    .footer-info a:hover { color: var(--amber); }
+    .footer-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--smoke);
+    }
+    .footer-divider .line {
+      width: 50px;
+      height: 1px;
+      background: var(--smoke);
+    }
+    .footer-credit {
+      font-size: 0.75rem;
+      color: var(--ash);
+    }
+    .footer-credit a {
+      color: var(--ash);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-credit a:hover { color: var(--amber); }
+    .footer-legal {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: var(--ash);
+      opacity: 0.6;
+    }
+    .footer-legal a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10,10,10,0.98);
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--smoke);
+      }
+      .menu-toggle { display: block; }
+
+      .hero-content { padding: 7rem 1.25rem 3rem; }
+      .hero-badge { display: none; }
+
+      section { padding: 4rem 1.25rem; }
+
+      .burger-list { grid-template-columns: 1fr; }
+      .menu-items { grid-template-columns: 1fr; }
+      .size-grid { flex-direction: row; flex-wrap: wrap; }
+      .size-card { min-width: 0; flex: 1 1 45%; }
+
+      .location-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      #omdomen::before { font-size: 15rem; }
+    }
+
+    @media (max-width: 480px) {
+      .size-card { flex: 1 1 100%; }
+    }
+
+    /* === INTEGRITETSPOLICY MODAL === */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: var(--off-black);
+      border: 1px solid var(--smoke);
+      max-width: 600px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 3rem;
+    }
+    .modal h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+    .modal p {
+      font-size: 0.85rem;
+      color: var(--ash);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+    .modal-close {
+      background: none;
+      border: 1px solid var(--smoke);
+      color: var(--cream);
+      padding: 0.75rem 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    .modal-close:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* Grain overlay for texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+<!-- NAVIGATION -->
+<nav aria-label="Huvudnavigering">
+  <a href="#" class="nav-logo" aria-label="Smashin' Burgers hem">SMASHIN<span>'</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="#meny">Meny</a></li>
+    <li><a href="#omdomen">Omdömen</a></li>
+    <li><a href="#hitta-hit">Hitta hit</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <button class="menu-toggle" aria-label="Öppna meny" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1600&q=80" alt="Saftig smash burger med smält ost" width="1600" height="900">
+  </div>
+  <div class="hero-content">
+    <p class="hero-tag">Söderhamn · Norra Hamngatan 27</p>
+    <h1>SMASH<br><em>BURGERS</em></h1>
+    <p class="hero-sub">Från foodtruck till restaurang vid ån. Handpressade, krispiga smash burgers med smält ost — precis som de ska vara.</p>
+    <div class="hero-actions">
+      <a href="#meny" class="btn btn-primary">Se menyn</a>
+      <a href="#hitta-hit" class="btn btn-ghost">Hitta hit</a>
+    </div>
+  </div>
+  <div class="hero-badge" aria-hidden="true">
+    <strong>4.4★</strong>
+    259 RECENSIONER<br>PÅ GOOGLE
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- MENU -->
+  <section id="meny">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">Menyn</p>
+        <h2 class="section-title">VÄLJ DIN BURGER</h2>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Burgare -->
+        <div class="menu-category reveal">
+          <h3 class="menu-category-title">BURGARE</h3>
+          <p class="menu-category-sub">Kött eller halloumi · Välj storlek nedan</p>
+
+          <div class="size-grid">
+            <div class="size-card">
+              <span class="weight">100<small>g</small></span>
+              <span class="price">114 kr</span>
+              <span class="combo">kombo 139 kr</span>
+            </div>
+            <div class="size-card">
+              <span class="weight">200<small>g</small></span>
+              <span class="price">149 kr</span>
+              <span class="combo">kombo 169 kr</span>
+            </div>
+            <div class="size-card">
+              <span class="weight">300<small>g</small></span>
+              <span class="price">174 kr</span>
+              <span class="combo">kombo 199 kr</span>
+            </div>
+            <div class="size-card">
+              <span class="weight">400<small>g</small></span>
+              <span class="price">199 kr</span>
+              <span class="combo">kombo 229 kr</span>
+            </div>
+          </div>
+          <p class="size-recommend">↑ Vi rekommenderar minst 200g kött för bästa smak</p>
+
+          <div class="burger-list">
+            <div class="burger-item">
+              <span class="burger-num">1</span>
+              <div class="burger-info">
+                <p class="burger-desc">Dressing, cheddar, ketchup, silverlök &amp; picklad gurka</p>
+              </div>
+            </div>
+            <div class="burger-item">
+              <span class="burger-num">2</span>
+              <div class="burger-info">
+                <p class="burger-desc">Pepperjackost, chipotlemayo, cheddar, rödlök, jalapeños &amp; bacon</p>
+              </div>
+            </div>
+            <div class="burger-item">
+              <span class="burger-num">3</span>
+              <div class="burger-info">
+                <p class="burger-desc">Srirachamayo, cheddar, rostad lök, silverlök &amp; jalapeños</p>
+              </div>
+            </div>
+            <div class="burger-item">
+              <span class="burger-num">4</span>
+              <div class="burger-info">
+                <p class="burger-desc">Bbq-sås, srirachamayo, cheddar, rostad lök, rödlök, bacon &amp; karamelliserad lök</p>
+              </div>
+            </div>
+            <div class="burger-item">
+              <span class="burger-num">5</span>
+              <div class="burger-info">
+                <p class="burger-desc">Tryffelmayo, cheddar, picklad rödlök, bacon &amp; krispsallad</p>
+              </div>
+            </div>
+            <div class="burger-item">
+              <span class="burger-num">6</span>
+              <div class="burger-info">
+                <p class="burger-desc">Tryffelmayo, srirachamayo, cheddar, picklad rödlök, silverlök &amp; krispsallad</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Andra rätter -->
+        <div class="menu-category reveal">
+          <h3 class="menu-category-title">ANDRA RÄTTER</h3>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Caesarsallad</p>
+                <p class="menu-item-detail">Kyckling eller halloumi</p>
+              </div>
+              <span class="menu-item-price">189 kr</span>
+            </div>
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Spicy Wrap</p>
+                <p class="menu-item-detail">Inkl pommes</p>
+              </div>
+              <span class="menu-item-price">189 kr</span>
+            </div>
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Crispy Chicken</p>
+                <p class="menu-item-detail">Krispig kycklingburgare</p>
+              </div>
+              <span class="menu-item-price">159 kr</span>
+            </div>
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Chicken Plate</p>
+                <p class="menu-item-detail">Med pommes &amp; tillbehör</p>
+              </div>
+              <span class="menu-item-price">199 kr</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tillbehör -->
+        <div class="menu-category reveal">
+          <h3 class="menu-category-title">TILLBEHÖR</h3>
+          <div class="menu-items">
+            <div class="menu-item">
+              <p class="menu-item-name">Pommes frites</p>
+              <span class="menu-item-price">39 kr</span>
+            </div>
+            <div class="menu-item">
+              <p class="menu-item-name">Garlic &amp; Parmesan Fries</p>
+              <span class="menu-item-price">69 kr</span>
+            </div>
+            <div class="menu-item">
+              <p class="menu-item-name">Dirty Fries</p>
+              <span class="menu-item-price">69 kr</span>
+            </div>
+            <div class="menu-item">
+              <p class="menu-item-name">Extra kött (100g)</p>
+              <span class="menu-item-price">39 kr</span>
+            </div>
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Dipp</p>
+                <p class="menu-item-detail">Aioli, cheddar, bea, chipotlemayo, srirachamayo, tryffelmayo</p>
+              </div>
+              <span class="menu-item-price">17 kr</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desserter -->
+        <div class="menu-category reveal">
+          <h3 class="menu-category-title">DESSERTER</h3>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Kladdkaka</p>
+                <p class="menu-item-detail">Serveras med vispgrädde</p>
+              </div>
+              <span class="menu-item-price">59 kr</span>
+            </div>
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Vaniljglass</p>
+                <p class="menu-item-detail">Toppat med chokladsås</p>
+              </div>
+              <span class="menu-item-price">59 kr</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- För kidsen -->
+        <div class="menu-category reveal">
+          <h3 class="menu-category-title">FÖR KIDSEN</h3>
+          <p class="menu-category-sub">Festis ingår</p>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Plättar</p>
+                <p class="menu-item-detail">Serveras med sylt &amp; grädde</p>
+              </div>
+              <span class="menu-item-price">59 / 79 kr</span>
+            </div>
+            <div class="menu-item">
+              <div>
+                <p class="menu-item-name">Nuggets</p>
+                <p class="menu-item-detail">Med pommes &amp; ketchup</p>
+              </div>
+              <span class="menu-item-price">69 kr</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section id="omdomen">
+    <div class="container">
+      <div class="trust-header reveal">
+        <div class="trust-stars" aria-label="4.4 av 5 stjärnor">★★★★☆</div>
+        <p class="trust-score">4.4 PÅ GOOGLE</p>
+        <p class="trust-count">259 recensioner</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <p class="review-text">Absolut bästa burgaren genom tiderna extremt goda pommes, enligt min fru den bästa hon ätit i hela sitt liv.</p>
+          <p class="review-source">— Tripadvisor</p>
+        </div>
+        <div class="review-card reveal">
+          <p class="review-text">Best smash burgers in town... The fries were top notch. Top class food and service.</p>
+          <p class="review-source">— Tripadvisor</p>
+        </div>
+        <div class="review-card reveal">
+          <p class="review-text">Bästa burgarna i stan! Så goda och glutenfria alternativ finns också.</p>
+          <p class="review-source">— Google Maps</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HITTA HIT -->
+  <section id="hitta-hit">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">Besök oss</p>
+        <h2 class="section-title">HITTA HIT</h2>
+      </div>
+
+      <div class="location-grid">
+        <div class="reveal">
+          <h3 style="font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.05em;margin-bottom:0.5rem;">ÖPPETTIDER</h3>
+          <table class="hours-table" aria-label="Öppettider">
+            <tbody>
+              <tr><td>Måndag</td><td>11 – 20</td></tr>
+              <tr><td>Tisdag</td><td>11 – 20</td></tr>
+              <tr><td>Onsdag</td><td>11 – 20</td></tr>
+              <tr><td>Torsdag</td><td>11 – 20</td></tr>
+              <tr><td>Fredag</td><td>11 – 00</td></tr>
+              <tr><td>Lördag</td><td>12 – 00</td></tr>
+              <tr class="closed"><td>Söndag</td><td>Stängt</td></tr>
+            </tbody>
+          </table>
+
+          <div class="address-block">
+            <p><strong style="color:var(--cream)">Smashin' Burgers</strong></p>
+            <p>Norra Hamngatan 27</p>
+            <p>826 37 Söderhamn</p>
+            <p style="margin-top:0.75rem;"><a href="mailto:gulfsoderhamn@outlook.com">gulfsoderhamn@outlook.com</a></p>
+          </div>
+        </div>
+
+        <div class="map-placeholder reveal" role="img" aria-label="Karta som visar Smashin' Burgers position vid Norra Hamngatan 27 i Söderhamn">
+          <div class="map-pin">
+            <span class="map-pin-icon">📍</span>
+            <p class="map-pin-text">Norra Hamngatan 27<br>Söderhamn</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-tag">Kontakt</p>
+        <h2 class="section-title">HÖR AV DIG</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-text reveal">
+          <p>Vill du boka bord för ett större sällskap, fråga om catering eller har andra funderingar? Skicka ett meddelande så återkommer vi så snart vi kan.</p>
+          <p>Du kan också nå oss direkt på:<br>
+            <a href="mailto:gulfsoderhamn@outlook.com" class="contact-email">gulfsoderhamn@outlook.com</a>
+          </p>
+        </div>
+
+        <div class="reveal">
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Namn</label>
+              <input type="text" id="name" name="name" placeholder="Ditt namn" required>
+            </div>
+            <div class="form-group">
+              <label for="email">E-post</label>
+              <input type="email" id="email" name="email" placeholder="din@email.se" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Meddelande</label>
+              <textarea id="message" name="message" placeholder="Skriv ditt meddelande här..." required></textarea>
+            </div>
+            <div class="gdpr-check">
+              <input type="checkbox" id="gdpr" name="gdpr" required>
+              <span><label for="gdpr">Jag godkänner att mina uppgifter sparas enligt <a href="#" class="privacy-link">integritetspolicyn</a></label></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Skicka meddelande</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <h3>Tack!</h3>
+            <p>Vi har tagit emot ditt meddelande och återkommer så snart vi kan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <p class="footer-logo">SMASHIN<span>'</span> BURGERS</p>
+    <div class="footer-info">
+      <p>Norra Hamngatan 27, 826 37 Söderhamn</p>
+      <p><a href="mailto:gulfsoderhamn@outlook.com">gulfsoderhamn@outlook.com</a></p>
+    </div>
+  </div>
+  <p class="footer-info">&copy; <span id="footerYear"></span> Smashin' Burgers. Alla rättigheter förbehållna.</p>
+  <div class="footer-divider">
+    <span class="line" aria-hidden="true"></span>
+    <span class="footer-credit">Producerad av <a href="https://claytopmedia.se" target="_blank" rel="noopener noreferrer">Claytop Media</a></span>
+    <span class="line" aria-hidden="true"></span>
+  </div>
+  <p class="footer-legal"><a href="#" class="privacy-link">Integritetspolicy</a></p>
+</footer>
+
+<!-- PRIVACY MODAL -->
+<div class="modal-overlay" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+  <div class="modal">
+    <h2 id="privacyTitle">Integritetspolicy</h2>
+    <p><strong>Smashin' Burgers</strong> värnar om din integritet. Här beskriver vi hur vi hanterar dina personuppgifter.</p>
+    <p><strong>Vilka uppgifter samlar vi in?</strong><br>
+    När du använder kontaktformuläret samlar vi in ditt namn, din e-postadress och ditt meddelande.</p>
+    <p><strong>Hur använder vi uppgifterna?</strong><br>
+    Vi använder dina uppgifter enbart för att besvara din förfrågan. Vi delar aldrig dina uppgifter med tredje part.</p>
+    <p><strong>Hur länge sparar vi uppgifterna?</strong><br>
+    Vi sparar dina uppgifter i högst 12 månader efter senaste kontakt, därefter raderas de.</p>
+    <p><strong>Dina rättigheter</strong><br>
+    Du har rätt att begära tillgång till, rättelse av eller radering av dina personuppgifter. Kontakta oss på <a href="mailto:gulfsoderhamn@outlook.com" style="color:var(--amber)">gulfsoderhamn@outlook.com</a>.</p>
+    <button class="modal-close" id="closeModal">Stäng</button>
+  </div>
+</div>
+
+<script>
+  // Dynamic year
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+  // Highlight today in hours table
+  const days = ['söndag','måndag','tisdag','onsdag','torsdag','fredag','lördag'];
+  const today = days[new Date().getDay()];
+  document.querySelectorAll('.hours-table tr').forEach(row => {
+    if (row.querySelector('td') && row.querySelector('td').textContent.toLowerCase() === today) {
+      row.classList.add('today');
+    }
+  });
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu toggle
+  const toggle = document.querySelector('.menu-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  // Close mobile menu on link click
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  });
+
+  // Privacy modal
+  document.querySelectorAll('.privacy-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('privacyModal').classList.add('active');
+    });
+  });
+  document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('privacyModal').classList.remove('active');
+  });
+  document.getElementById('privacyModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+      e.currentTarget.classList.remove('active');
+    }
+  });
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.getElementById('privacyModal').classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>
