@@ -28,12 +28,14 @@
 ### Meny (källa: Google Maps, foto nov 2025)
 
 **BURGARE** (kött eller halloumi)
-| Storlek | Pris | Med läsk, pommes & dipp |
+| Storlek | Pris | Lunch (mån–fre 11–14) |
 |---------|------|-------------------------|
 | 100g | 114 kr | 139 kr |
 | 200g | 149 kr | 169 kr |
 | 300g | 174 kr | 199 kr |
 | 400g | 199 kr | 229 kr |
+
+**Lunch mån–fre 11–14:** Läsk, pommes frites & dipp ingår i lunchpriset.
 
 *"Vi rekommenderar minst 200g kött för bästa smak"*
 
@@ -66,9 +68,10 @@
 - Nuggets: 69 kr — med pommes & ketchup, Festis ingår
 
 ### Logotyp
-- Hämtad från: EJ TILLGÄNGLIG (ingen hemsida, Instagram-profil ej tillgänglig)
-- Synlig branding på menyn: "SMASHIN' BURGERS" i bold/uppercase, svart bakgrund med vit text
-- Sparad som: Placeholder behövs (skapa med /frontend-design)
+- Synlig på fasaden och menyn: "SMASHIN' BURGERS" i bold/uppercase vit text med flamikon integrerad
+- Menyn: Vit text på svart bakgrund
+- Fasaden: Vita 3D-bokstäver med flamikon på mörk fasad
+- Källa: Google Maps-foton (okt/nov 2025)
 
 ### Om företaget
 - Startade som foodtruck vid Gulf-macken i Söderhamn
