@@ -99,8 +99,17 @@
       color: var(--cream);
       text-decoration: none;
       line-height: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
     .nav-logo span { color: var(--amber); }
+    .logo-flame {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .logo-flame path { fill: var(--amber); }
     .nav-links {
       display: flex;
       gap: 2rem;
@@ -395,12 +404,12 @@
     .size-recommend {
       font-family: var(--font-mono);
       font-size: 0.7rem;
-      color: var(--ember);
+      color: var(--amber);
       letter-spacing: 0.05em;
       margin-bottom: 2rem;
       padding: 0.75rem 1rem;
-      background: rgba(196,74,32,0.1);
-      border-left: 3px solid var(--ember);
+      background: rgba(232,160,32,0.08);
+      border-left: 3px solid var(--amber);
       display: inline-block;
     }
 
@@ -604,42 +613,23 @@
     }
     .address-block a:hover { text-decoration: underline; }
 
-    .map-placeholder {
+    .map-embed {
       width: 100%;
       height: 100%;
       min-height: 350px;
-      background: var(--charcoal);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       border: 1px solid var(--smoke);
-      position: relative;
       overflow: hidden;
     }
-    .map-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(0deg, transparent, transparent 30px, var(--smoke) 30px, var(--smoke) 31px),
-        repeating-linear-gradient(90deg, transparent, transparent 30px, var(--smoke) 30px, var(--smoke) 31px);
-      opacity: 0.3;
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 350px;
+      border: 0;
+      filter: grayscale(0.6) brightness(0.8) contrast(1.1);
+      transition: filter 0.3s ease;
     }
-    .map-pin {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-    .map-pin-icon {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    .map-pin-text {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--ash);
-      letter-spacing: 0.1em;
+    .map-embed:hover iframe {
+      filter: grayscale(0.2) brightness(0.9) contrast(1.05);
     }
 
     /* === CONTACT === */
@@ -933,7 +923,10 @@
 
 <!-- NAVIGATION -->
 <nav aria-label="Huvudnavigering">
-  <a href="#" class="nav-logo" aria-label="Smashin' Burgers hem">SMASHIN<span>'</span> BURGERS</a>
+  <a href="#" class="nav-logo" aria-label="Smashin' Burgers hem">
+    <svg class="logo-flame" viewBox="-3 0 32 32" aria-hidden="true"><g transform="translate(-415,-411)" fill="currentColor"><path d="M428.5,441 C422.148,441 417,435.641 417,429.625 C417,428.228 417.031,427.094 418,426 C417.895,426.634 419.397,432.055 424.305,431.771 C424.092,427.652 422.978,417.561 428.152,414.073 C427.695,419.557 429.038,426.924 435.029,428 C434.686,425.801 434.727,422.143 436.267,421.467 C436.433,424.836 438.924,426.914 438.924,430.152 C438.924,436.016 433.251,441 428.5,441Z"/><path d="M437.905,417.953 C433.52,419.203 432.717,422.748 433,425 C429.872,421.322 430,417.093 430,411 C419.968,414.783 422.301,425.688 422,429 C419.477,426.935 419,422 419,422 C416.336,423.371 415,427.031 415,430 C415,437.18 420.82,443 428,443 C435.18,443 441,437.18 441,430 C441,425.733 437.867,423.765 437.905,417.953Z"/></g></svg>
+    SMASHIN<span>'</span> BURGERS
+  </a>
   <ul class="nav-links" role="list">
     <li><a href="#meny">Meny</a></li>
     <li><a href="#omdomen">Omdömen</a></li>
@@ -952,6 +945,7 @@
   </div>
   <div class="hero-content">
     <p class="hero-tag">Söderhamn · Norra Hamngatan 27</p>
+    <svg viewBox="-3 0 32 32" aria-hidden="true" style="width:56px;height:56px;margin-bottom:1rem;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards;"><g transform="translate(-415,-411)" fill="var(--amber)"><path d="M428.5,441 C422.148,441 417,435.641 417,429.625 C417,428.228 417.031,427.094 418,426 C417.895,426.634 419.397,432.055 424.305,431.771 C424.092,427.652 422.978,417.561 428.152,414.073 C427.695,419.557 429.038,426.924 435.029,428 C434.686,425.801 434.727,422.143 436.267,421.467 C436.433,424.836 438.924,426.914 438.924,430.152 C438.924,436.016 433.251,441 428.5,441Z"/><path d="M437.905,417.953 C433.52,419.203 432.717,422.748 433,425 C429.872,421.322 430,417.093 430,411 C419.968,414.783 422.301,425.688 422,429 C419.477,426.935 419,422 419,422 C416.336,423.371 415,427.031 415,430 C415,437.18 420.82,443 428,443 C435.18,443 441,437.18 441,430 C441,425.733 437.867,423.765 437.905,417.953Z"/></g></svg>
     <h1>SMASHIN<span style="color:var(--amber)">'</span><br><em>BURGERS</em></h1>
     <p class="hero-sub">Från foodtruck till restaurang vid ån. Handpressade, krispiga smash burgers med smält ost — precis som de ska vara.</p>
     <div class="hero-actions">
@@ -1214,11 +1208,8 @@
           </div>
         </div>
 
-        <div class="map-placeholder reveal" role="img" aria-label="Karta som visar Smashin' Burgers position vid Norra Hamngatan 27 i Söderhamn">
-          <div class="map-pin">
-            <span class="map-pin-icon">📍</span>
-            <p class="map-pin-text">Norra Hamngatan 27<br>Söderhamn</p>
-          </div>
+        <div class="map-embed reveal">
+          <iframe src="https://www.google.com/maps?q=Smashin'+Burgers,+Norra+Hamngatan+27,+S%C3%B6derhamn&z=16&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karta som visar Smashin' Burgers position vid Norra Hamngatan 27 i Söderhamn"></iframe>
         </div>
       </div>
     </div>
@@ -1274,7 +1265,10 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
-    <p class="footer-logo">SMASHIN<span>'</span> BURGERS</p>
+    <p class="footer-logo">
+      <svg class="logo-flame" viewBox="-3 0 32 32" aria-hidden="true" style="width:22px;height:22px;display:inline-block;vertical-align:middle;margin-right:0.3rem;"><g transform="translate(-415,-411)" fill="currentColor"><path d="M428.5,441 C422.148,441 417,435.641 417,429.625 C417,428.228 417.031,427.094 418,426 C417.895,426.634 419.397,432.055 424.305,431.771 C424.092,427.652 422.978,417.561 428.152,414.073 C427.695,419.557 429.038,426.924 435.029,428 C434.686,425.801 434.727,422.143 436.267,421.467 C436.433,424.836 438.924,426.914 438.924,430.152 C438.924,436.016 433.251,441 428.5,441Z"/><path d="M437.905,417.953 C433.52,419.203 432.717,422.748 433,425 C429.872,421.322 430,417.093 430,411 C419.968,414.783 422.301,425.688 422,429 C419.477,426.935 419,422 419,422 C416.336,423.371 415,427.031 415,430 C415,437.18 420.82,443 428,443 C435.18,443 441,437.18 441,430 C441,425.733 437.867,423.765 437.905,417.953Z"/></g></svg>
+      SMASHIN<span>'</span> BURGERS
+    </p>
     <div class="footer-info">
       <p>Norra Hamngatan 27, 826 37 Söderhamn</p>
       <p><a href="mailto:gulfsoderhamn@outlook.com">gulfsoderhamn@outlook.com</a></p>
