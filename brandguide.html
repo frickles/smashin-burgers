@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Brandguide — Smashin' Burgers 2026</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --off-black: #141414;
+      --charcoal: #1e1e1e;
+      --smoke: #2a2a2a;
+      --ash: #8a8a8a;
+      --cream: #f5f0e8;
+      --white: #fafafa;
+      --amber: #e8a020;
+      --amber-bright: #f0b840;
+      --ember: #c44a20;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* === LAYOUT === */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    /* === REVEAL ANIMATION === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === HEADER === */
+    .brand-header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--black) 0%, var(--off-black) 50%, var(--black) 100%);
+    }
+    .brand-header::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 800px;
+      height: 800px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(232,160,32,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    .header-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border: 1px solid rgba(232,160,32,0.3);
+      padding: 0.5rem 1.5rem;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .header-flame {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+    .header-flame path { fill: var(--amber); }
+    .header-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+    .header-title em {
+      font-style: normal;
+      color: var(--amber);
+    }
+    .header-tagline {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      color: var(--ash);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
+    .header-meta {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--ash);
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s forwards;
+    }
+    .header-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--amber);
+      margin: 3rem auto 0;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.2s forwards;
+    }
+
+    /* === SECTION HEADER === */
+    .section-header {
+      margin-bottom: 4rem;
+    }
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: rgba(232,160,32,0.12);
+      line-height: 1;
+      margin-bottom: -0.5rem;
+    }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-tag::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .section-desc {
+      color: var(--ash);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin-top: 1rem;
+      line-height: 1.7;
+    }
+
+    /* === 01 FARGPALETT === */
+    .colors-section {
+      background: var(--off-black);
+    }
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .color-card {
+      border: 1px solid var(--smoke);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .color-card:hover {
+      border-color: rgba(232,160,32,0.3);
+      transform: translateY(-4px);
+    }
+    .color-swatch {
+      height: 140px;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+    .color-swatch-text {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      opacity: 0.9;
+    }
+    .color-info {
+      padding: 1.25rem;
+      background: var(--charcoal);
+    }
+    .color-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    .color-hex {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--ash);
+    }
+    .color-var {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--ash);
+      opacity: 0.6;
+      margin-top: 0.25rem;
+      display: block;
+    }
+    .color-role {
+      font-size: 0.75rem;
+      color: var(--ash);
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
+    /* === 02 TYPOGRAFI === */
+    .typo-section {
+      background: var(--black);
+    }
+    .typo-grid {
+      display: grid;
+      gap: 3rem;
+    }
+    .typo-card {
+      padding: 3rem;
+      background: var(--off-black);
+      border: 1px solid var(--smoke);
+      transition: all 0.3s ease;
+    }
+    .typo-card:hover {
+      border-color: rgba(232,160,32,0.2);
+    }
+    .typo-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .typo-label::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--amber);
+    }
+    .typo-specimen {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--smoke);
+      padding-bottom: 1.5rem;
+    }
+    .typo-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .typo-meta-item {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      line-height: 1.6;
+    }
+    .typo-meta-item strong {
+      display: block;
+      color: var(--cream);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .typo-sizes {
+      display: grid;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--smoke);
+    }
+    .typo-size-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+    .typo-size-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    /* === 03 KOMPONENTER === */
+    .components-section {
+      background: var(--off-black);
+    }
+    .comp-group {
+      margin-bottom: 4rem;
+    }
+    .comp-group:last-child {
+      margin-bottom: 0;
+    }
+    .comp-group-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+    .comp-group-desc {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    /* Buttons */
+    .btn-grid {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-primary {
+      background: var(--amber);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: var(--amber-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(232,160,32,0.3);
+    }
+    .btn-secondary {
+      background: var(--ember);
+      color: var(--cream);
+    }
+    .btn-secondary:hover {
+      background: #d45530;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(196,74,32,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid var(--cream);
+    }
+    .btn-outline:hover {
+      background: rgba(245,240,232,0.08);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid rgba(245,240,232,0.2);
+    }
+    .btn-ghost:hover {
+      border-color: var(--cream);
+      background: rgba(245,240,232,0.05);
+    }
+    .btn-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Tags */
+    .tag-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tag-amber {
+      color: var(--amber);
+      border: 1px solid rgba(232,160,32,0.3);
+      background: rgba(232,160,32,0.05);
+    }
+    .tag-ember {
+      color: var(--ember);
+      border: 1px solid rgba(196,74,32,0.3);
+      background: rgba(196,74,32,0.05);
+    }
+    .tag-ghost {
+      color: var(--ash);
+      border: 1px solid var(--smoke);
+      background: transparent;
+    }
+    .tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* Stat cards */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .stat-card {
+      padding: 2rem;
+      background: var(--charcoal);
+      border: 1px solid var(--smoke);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      border-color: rgba(232,160,32,0.3);
+      transform: translateY(-4px);
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .stat-value small {
+      font-size: 1rem;
+      color: var(--ash);
+    }
+    .stat-unit {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--amber);
+      display: block;
+      margin-top: 0.5rem;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--ash);
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* Menu item preview */
+    .menu-item-preview {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1.25rem 1.5rem;
+      background: var(--charcoal);
+      border: 1px solid transparent;
+      transition: all 0.3s;
+      max-width: 400px;
+    }
+    .menu-item-preview:hover {
+      border-color: rgba(232,160,32,0.2);
+      background: var(--smoke);
+    }
+    .menu-item-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--amber);
+      line-height: 1;
+      margin-right: 1rem;
+      min-width: 30px;
+    }
+    .menu-item-info { flex: 1; }
+    .menu-item-desc {
+      font-size: 0.85rem;
+      color: var(--ash);
+      line-height: 1.5;
+    }
+
+    /* Form preview */
+    .form-preview {
+      max-width: 400px;
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 1rem;
+      background: var(--charcoal);
+      border: 1px solid var(--smoke);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus {
+      border-color: var(--amber);
+      outline: none;
+    }
+    .form-group input::placeholder {
+      color: var(--ash);
+      opacity: 0.5;
+    }
+
+    /* Nav preview */
+    .nav-preview {
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(232,160,32,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .nav-preview-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-preview-logo span { color: var(--amber); }
+    .nav-preview-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-preview-links a {
+      color: var(--ash);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .nav-preview-links a:hover { color: var(--cream); }
+
+    /* Review card preview */
+    .review-preview {
+      padding: 2.5rem;
+      background: var(--off-black);
+      border: 1px solid var(--smoke);
+      position: relative;
+      max-width: 400px;
+      transition: all 0.3s;
+    }
+    .review-preview:hover {
+      border-color: rgba(232,160,32,0.3);
+      transform: translateY(-4px);
+    }
+    .review-preview::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 5rem;
+      color: var(--amber);
+      opacity: 0.2;
+      position: absolute;
+      top: 0.5rem;
+      left: 1.5rem;
+      line-height: 1;
+    }
+    .review-preview-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    .review-preview-source {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ash);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* === 04 TONALITET === */
+    .tone-section {
+      background: var(--black);
+    }
+    .tone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .tone-card {
+      padding: 2.5rem;
+      background: var(--off-black);
+      border: 1px solid var(--smoke);
+      border-left: 3px solid var(--amber);
+      transition: all 0.3s;
+    }
+    .tone-card:hover {
+      border-color: rgba(232,160,32,0.3);
+      border-left-color: var(--amber);
+    }
+    .tone-card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .tone-card-text {
+      font-size: 0.9rem;
+      color: var(--ash);
+      line-height: 1.7;
+    }
+    .tone-examples {
+      margin-top: 3rem;
+    }
+    .tone-example {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--smoke);
+    }
+    .tone-example:last-child { border-bottom: none; }
+    .tone-do, .tone-dont {
+      padding: 1.5rem;
+    }
+    .tone-do {
+      border-left: 3px solid var(--amber);
+      background: rgba(232,160,32,0.03);
+    }
+    .tone-dont {
+      border-left: 3px solid var(--ember);
+      background: rgba(196,74,32,0.03);
+    }
+    .tone-do-label, .tone-dont-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .tone-do-label { color: var(--amber); }
+    .tone-dont-label { color: var(--ember); }
+    .tone-do p, .tone-dont p {
+      font-size: 0.9rem;
+      color: var(--ash);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* === SPACING & GRID DOCS === */
+    .spacing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .spacing-item {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: var(--charcoal);
+      border: 1px solid var(--smoke);
+    }
+    .spacing-bar {
+      width: 100%;
+      background: rgba(232,160,32,0.2);
+      margin-bottom: 0.75rem;
+    }
+    .spacing-value {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--cream);
+    }
+    .spacing-name {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--ash);
+      margin-top: 0.25rem;
+    }
+
+    /* === FOOTER === */
+    .brand-footer {
+      padding: 3rem 2rem;
+      background: var(--off-black);
+      border-top: 1px solid var(--smoke);
+      text-align: center;
+    }
+    .brand-footer-text {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .brand-footer-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .brand-footer-divider .line {
+      width: 50px;
+      height: 1px;
+      background: var(--smoke);
+    }
+    .brand-footer-divider span:not(.line) {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--ash);
+      opacity: 0.5;
+    }
+
+    /* === CSS VARIABLES REFERENCE === */
+    .css-ref {
+      background: var(--charcoal);
+      border: 1px solid var(--smoke);
+      padding: 2rem;
+      overflow-x: auto;
+      margin-top: 2rem;
+    }
+    .css-ref code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 2;
+      color: var(--ash);
+      white-space: pre;
+    }
+    .css-ref code .prop { color: var(--amber); }
+    .css-ref code .val { color: var(--cream); }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      .container { padding: 0 1.25rem; }
+      .color-grid { grid-template-columns: repeat(2, 1fr); }
+      .tone-example { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-preview-links { display: none; }
+      .btn-grid { gap: 1rem; }
+      .btn { padding: 0.85rem 1.75rem; font-size: 0.7rem; }
+    }
+    @media (max-width: 480px) {
+      .color-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="brand-header">
+  <div class="header-content">
+    <div class="header-badge">Brandguide 2026</div>
+    <svg class="header-flame" viewBox="-3 0 32 32" aria-hidden="true"><g transform="translate(-415,-411)"><path d="M428.5,441 C422.148,441 417,435.641 417,429.625 C417,428.228 417.031,427.094 418,426 C417.895,426.634 419.397,432.055 424.305,431.771 C424.092,427.652 422.978,417.561 428.152,414.073 C427.695,419.557 429.038,426.924 435.029,428 C434.686,425.801 434.727,422.143 436.267,421.467 C436.433,424.836 438.924,426.914 438.924,430.152 C438.924,436.016 433.251,441 428.5,441Z" fill="#e8a020"/><path d="M437.905,417.953 C433.52,419.203 432.717,422.748 433,425 C429.872,421.322 430,417.093 430,411 C419.968,414.783 422.301,425.688 422,429 C419.477,426.935 419,422 419,422 C416.336,423.371 415,427.031 415,430 C415,437.18 420.82,443 428,443 C435.18,443 441,437.18 441,430 C441,425.733 437.867,423.765 437.905,417.953Z" fill="#e8a020"/></g></svg>
+    <h1 class="header-title">SMASHIN<em>'</em><br>BURGERS</h1>
+    <p class="header-tagline">Handgjorda smash burgers med rökig attityd. Visuell identitet och designriktlinjer.</p>
+    <p class="header-meta">Soderhamn &middot; Sedan 2023 &middot; Street Smoke</p>
+    <div class="header-divider"></div>
+  </div>
+</header>
+
+<!-- ========== 01 FARGPALETT ========== -->
+<section class="colors-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">01</div>
+      <p class="section-tag">Fargpalett</p>
+      <h2 class="section-title">VARUMÄRKETS FÄRGER</h2>
+      <p class="section-desc">En mörk, rökig palett med varma accenter i amber och ember. Svart dominerar, guld lyser igenom som glöd genom rök.</p>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;letter-spacing:0.08em;color:var(--amber);margin-bottom:1.5rem;" class="reveal">PRIMÄRA FÄRGER</h3>
+    <div class="color-grid reveal" style="margin-bottom:3rem;">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#e8a020;">
+          <span class="color-swatch-text" style="color:#0a0a0a;">Aa — Kontrast mot svart</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">AMBER</div>
+          <div class="color-hex">#e8a020</div>
+          <span class="color-var">--amber</span>
+          <p class="color-role">Primär accentfärg. Används för rubriker, länkar, CTA-knappar och dekorativa element.</p>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#f0b840;">
+          <span class="color-swatch-text" style="color:#0a0a0a;">Aa — Ljusare hover</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">AMBER BRIGHT</div>
+          <div class="color-hex">#f0b840</div>
+          <span class="color-var">--amber-bright</span>
+          <p class="color-role">Hover-state för amber-element. Ljusare variant för interaktion.</p>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#c44a20;">
+          <span class="color-swatch-text" style="color:#f5f0e8;">Aa — Varning & eld</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">EMBER</div>
+          <div class="color-hex">#c44a20</div>
+          <span class="color-var">--ember</span>
+          <p class="color-role">Sekundär accent. Används för "stängt"-markeringar, varningar och kontrast till amber.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;letter-spacing:0.08em;color:var(--amber);margin-bottom:1.5rem;" class="reveal">NEUTRALA FÄRGER</h3>
+    <div class="color-grid reveal" style="margin-bottom:3rem;">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0a0a0a;border-bottom:1px solid #2a2a2a;">
+          <span class="color-swatch-text" style="color:#8a8a8a;">Aa — Primär bakgrund</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">BLACK</div>
+          <div class="color-hex">#0a0a0a</div>
+          <span class="color-var">--black</span>
+          <p class="color-role">Primär bakgrundsfärg. Djupt svart som bas för hela designen.</p>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#141414;border-bottom:1px solid #2a2a2a;">
+          <span class="color-swatch-text" style="color:#8a8a8a;">Aa — Sektioner</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">OFF-BLACK</div>
+          <div class="color-hex">#141414</div>
+          <span class="color-var">--off-black</span>
+          <p class="color-role">Alternativ bakgrund för sektioner. Skapar subtil djupvariation.</p>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#1e1e1e;border-bottom:1px solid #2a2a2a;">
+          <span class="color-swatch-text" style="color:#8a8a8a;">Aa — Kort & inputs</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">CHARCOAL</div>
+          <div class="color-hex">#1e1e1e</div>
+          <span class="color-var">--charcoal</span>
+          <p class="color-role">Kort, formulärfält och upphöjda ytor.</p>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#2a2a2a;border-bottom:1px solid #8a8a8a33;">
+          <span class="color-swatch-text" style="color:#8a8a8a;">Aa — Ramar & dividers</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">SMOKE</div>
+          <div class="color-hex">#2a2a2a</div>
+          <span class="color-var">--smoke</span>
+          <p class="color-role">Kanter, ramar och skiljelinjer. Subtil separation.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:1.3rem;letter-spacing:0.08em;color:var(--amber);margin-bottom:1.5rem;" class="reveal">TEXTFÄRGER</h3>
+    <div class="color-grid reveal">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#f5f0e8;">
+          <span class="color-swatch-text" style="color:#0a0a0a;">Aa — Huvudtext</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">CREAM</div>
+          <div class="color-hex">#f5f0e8</div>
+          <span class="color-var">--cream</span>
+          <p class="color-role">Primär textfärg. Varm vit med guldig ton istället för ren vit.</p>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#fafafa;">
+          <span class="color-swatch-text" style="color:#0a0a0a;">Aa — Ren vit</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">WHITE</div>
+          <div class="color-hex">#fafafa</div>
+          <span class="color-var">--white</span>
+          <p class="color-role">Ren vit. Används sparsamt, mest för högsta kontrast.</p>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#8a8a8a;">
+          <span class="color-swatch-text" style="color:#0a0a0a;">Aa — Sekundär text</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">ASH</div>
+          <div class="color-hex">#8a8a8a</div>
+          <span class="color-var">--ash</span>
+          <p class="color-role">Sekundär text, beskrivningar och metadata. Dämpad men läsbar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="css-ref reveal" style="margin-top:3rem;">
+      <code><span class="prop">:root</span> {
+  <span class="prop">--black:</span> <span class="val">#0a0a0a</span>;
+  <span class="prop">--off-black:</span> <span class="val">#141414</span>;
+  <span class="prop">--charcoal:</span> <span class="val">#1e1e1e</span>;
+  <span class="prop">--smoke:</span> <span class="val">#2a2a2a</span>;
+  <span class="prop">--ash:</span> <span class="val">#8a8a8a</span>;
+  <span class="prop">--cream:</span> <span class="val">#f5f0e8</span>;
+  <span class="prop">--white:</span> <span class="val">#fafafa</span>;
+  <span class="prop">--amber:</span> <span class="val">#e8a020</span>;
+  <span class="prop">--amber-bright:</span> <span class="val">#f0b840</span>;
+  <span class="prop">--ember:</span> <span class="val">#c44a20</span>;
+}</code>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 02 TYPOGRAFI ========== -->
+<section class="typo-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">02</div>
+      <p class="section-tag">Typografi</p>
+      <h2 class="section-title">TYPSNITT & TEXTSTILAR</h2>
+      <p class="section-desc">Tre typsnitt som skapar kontrast: ett stort displaytypsnitt, ett monospace-typsnitt för detaljer, och ett lättläst sans-serif för brödtext.</p>
+    </div>
+
+    <div class="typo-grid">
+      <!-- Bebas Neue -->
+      <div class="typo-card reveal">
+        <span class="typo-label">Display / Rubriker</span>
+        <div class="typo-specimen">
+          <p style="font-family:var(--font-display);font-size:4.5rem;line-height:0.9;letter-spacing:0.02em;color:var(--cream);">BEBAS NEUE</p>
+          <p style="font-family:var(--font-display);font-size:2rem;color:var(--ash);letter-spacing:0.05em;margin-top:0.5rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ</p>
+          <p style="font-family:var(--font-display);font-size:2rem;color:var(--ash);letter-spacing:0.05em;">1234567890</p>
+        </div>
+        <div class="typo-meta">
+          <div class="typo-meta-item"><strong>Typsnitt</strong>Bebas Neue</div>
+          <div class="typo-meta-item"><strong>Vikt</strong>400 (Regular)</div>
+          <div class="typo-meta-item"><strong>CSS-variabel</strong>--font-display</div>
+          <div class="typo-meta-item"><strong>Användning</strong>Rubriker, logotyp, nummer, sektionstitlar</div>
+        </div>
+        <div class="typo-sizes">
+          <div class="typo-size-row">
+            <span class="typo-size-label">Hero H1</span>
+            <span style="font-family:var(--font-display);font-size:clamp(3rem,8vw,5rem);line-height:0.9;">SMASHIN' BURGERS</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Sektion H2</span>
+            <span style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);line-height:1;">VÄLJ DIN BURGER</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Kategori H3</span>
+            <span style="font-family:var(--font-display);font-size:2rem;letter-spacing:0.08em;color:var(--amber);">BURGARE</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Burgarnr</span>
+            <span style="font-family:var(--font-display);font-size:1.8rem;color:var(--amber);line-height:1;">1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Space Mono -->
+      <div class="typo-card reveal">
+        <span class="typo-label">Mono / Detaljer</span>
+        <div class="typo-specimen">
+          <p style="font-family:var(--font-mono);font-size:2rem;color:var(--cream);">Space Mono</p>
+          <p style="font-family:var(--font-mono);font-size:1rem;color:var(--ash);margin-top:0.5rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö</p>
+          <p style="font-family:var(--font-mono);font-size:1rem;color:var(--ash);">1234567890 — 149 kr</p>
+        </div>
+        <div class="typo-meta">
+          <div class="typo-meta-item"><strong>Typsnitt</strong>Space Mono</div>
+          <div class="typo-meta-item"><strong>Vikter</strong>400, 700, 400 italic</div>
+          <div class="typo-meta-item"><strong>CSS-variabel</strong>--font-mono</div>
+          <div class="typo-meta-item"><strong>Användning</strong>Priser, taggar, labels, navigation, knappar, metadata</div>
+        </div>
+        <div class="typo-sizes">
+          <div class="typo-size-row">
+            <span class="typo-size-label">Pris</span>
+            <span style="font-family:var(--font-mono);font-size:1.1rem;color:var(--amber);">149 kr</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Sektionstagg</span>
+            <span style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--amber);">Menyn</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Navlänk</span>
+            <span style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ash);">HITTA HIT</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Knapptext</span>
+            <span style="font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;background:var(--amber);color:var(--black);padding:0.5rem 1rem;">SE MENYN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DM Sans -->
+      <div class="typo-card reveal">
+        <span class="typo-label">Body / Brödtext</span>
+        <div class="typo-specimen">
+          <p style="font-family:var(--font-body);font-size:2rem;color:var(--cream);font-weight:400;">DM Sans</p>
+          <p style="font-family:var(--font-body);font-size:1rem;color:var(--ash);margin-top:0.5rem;">ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖabcdefghijklmnopqrstuvwxyzåäö</p>
+          <p style="font-family:var(--font-body);font-size:1rem;color:var(--ash);">1234567890 !@#$%&*()—</p>
+        </div>
+        <div class="typo-meta">
+          <div class="typo-meta-item"><strong>Typsnitt</strong>DM Sans</div>
+          <div class="typo-meta-item"><strong>Vikter</strong>300 (Light), 400 (Regular), 500 (Medium), 600 (Semi)</div>
+          <div class="typo-meta-item"><strong>CSS-variabel</strong>--font-body</div>
+          <div class="typo-meta-item"><strong>Användning</strong>Brödtext, beskrivningar, formulärfält, allmän text</div>
+        </div>
+        <div class="typo-sizes">
+          <div class="typo-size-row">
+            <span class="typo-size-label">Hero-intro</span>
+            <span style="font-family:var(--font-body);font-size:1.15rem;color:var(--ash);line-height:1.7;">Handpressade, krispiga smash burgers med smält ost.</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Brödtext</span>
+            <span style="font-family:var(--font-body);font-size:0.95rem;color:var(--ash);line-height:1.7;">Från foodtruck till restaurang vid ån i Söderhamn.</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Menydetalj</span>
+            <span style="font-family:var(--font-body);font-size:0.85rem;color:var(--ash);">Dressing, cheddar, ketchup, silverlök & picklad gurka</span>
+          </div>
+          <div class="typo-size-row">
+            <span class="typo-size-label">Medium</span>
+            <span style="font-family:var(--font-body);font-size:0.9rem;color:var(--cream);font-weight:500;">Caesarsallad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="css-ref reveal" style="margin-top:3rem;">
+      <code><span class="prop">:root</span> {
+  <span class="prop">--font-display:</span> <span class="val">'Bebas Neue', sans-serif</span>;
+  <span class="prop">--font-mono:</span> <span class="val">'Space Mono', monospace</span>;
+  <span class="prop">--font-body:</span> <span class="val">'DM Sans', sans-serif</span>;
+}
+
+<span class="prop">body</span> {
+  <span class="prop">font-family:</span> <span class="val">var(--font-body)</span>;
+  <span class="prop">line-height:</span> <span class="val">1.6</span>;
+  <span class="prop">-webkit-font-smoothing:</span> <span class="val">antialiased</span>;
+}</code>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 03 KOMPONENTER ========== -->
+<section class="components-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">03</div>
+      <p class="section-tag">Komponenter</p>
+      <h2 class="section-title">UI-KOMPONENTER</h2>
+      <p class="section-desc">Byggblock som skapar varumärkets visuella identitet. Alla komponenter följer den mörka, rökiga estetiken.</p>
+    </div>
+
+    <!-- Knappar -->
+    <div class="comp-group reveal">
+      <h3 class="comp-group-title">KNAPPAR</h3>
+      <p class="comp-group-desc">Space Mono, versaler, 0.15em letter-spacing, padding 1rem 2.5rem</p>
+      <div class="btn-grid">
+        <div>
+          <span class="btn-label">Primär (Amber)</span>
+          <button class="btn btn-primary">Se menyn</button>
+        </div>
+        <div>
+          <span class="btn-label">Sekundär (Ember)</span>
+          <button class="btn btn-secondary">Boka bord</button>
+        </div>
+        <div>
+          <span class="btn-label">Outline</span>
+          <button class="btn btn-outline">Hitta hit</button>
+        </div>
+        <div>
+          <span class="btn-label">Ghost</span>
+          <button class="btn btn-ghost">Läs mer</button>
+        </div>
+      </div>
+      <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ash);line-height:1.8;margin-top:1rem;">
+        Hover-effekter: translateY(-2px) + box-shadow med respektive färg.<br>
+        Primär hover: --amber-bright (#f0b840) + 0 8px 30px rgba(232,160,32,0.3)
+      </p>
+    </div>
+
+    <!-- Taggar -->
+    <div class="comp-group reveal">
+      <h3 class="comp-group-title">TAGGAR & BADGES</h3>
+      <p class="comp-group-desc">Används för sektionsmarkeringar, status och kategorier</p>
+      <div class="tag-grid">
+        <span class="tag tag-amber">Söderhamn</span>
+        <span class="tag tag-amber">Smash Burgers</span>
+        <span class="tag tag-ember">Stängt</span>
+        <span class="tag tag-ghost">4.4 På Google</span>
+      </div>
+      <div style="margin-top:1rem;">
+        <span class="btn-label">Sektionstagg med streck</span>
+        <p style="font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:1rem;margin-top:0.5rem;">
+          <span style="display:inline-block;width:30px;height:1px;background:var(--amber);"></span>
+          Menyn
+        </p>
+      </div>
+    </div>
+
+    <!-- Statistikkort -->
+    <div class="comp-group reveal">
+      <h3 class="comp-group-title">STATISTIKKORT</h3>
+      <p class="comp-group-desc">Används för priser, vikter och nyckeltal</p>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-value">100<small>g</small></span>
+          <span class="stat-unit">114 kr</span>
+          <span class="stat-label">Lunch 139 kr</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">200<small>g</small></span>
+          <span class="stat-unit">149 kr</span>
+          <span class="stat-label">Lunch 169 kr</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">4.4</span>
+          <span class="stat-unit">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="stat-label">259 Recensioner</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">6</span>
+          <span class="stat-unit">burgare</span>
+          <span class="stat-label">Pa menyn</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menypost -->
+    <div class="comp-group reveal">
+      <h3 class="comp-group-title">MENYPOSTER</h3>
+      <p class="comp-group-desc">Hur enskilda burgare visas i menylistan</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;">
+        <div class="menu-item-preview">
+          <span class="menu-item-num">1</span>
+          <div class="menu-item-info">
+            <p class="menu-item-desc">Dressing, cheddar, ketchup, silverlök & picklad gurka</p>
+          </div>
+        </div>
+        <div class="menu-item-preview">
+          <span class="menu-item-num">2</span>
+          <div class="menu-item-info">
+            <p class="menu-item-desc">Pepperjackost, chipotlemayo, cheddar, rödlök, jalapeños & bacon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Omdömeskort -->
+    <div class="comp-group reveal">
+      <h3 class="comp-group-title">OMDÖMESKORT</h3>
+      <p class="comp-group-desc">Kundrecensioner med citattecken som dekor</p>
+      <div class="review-preview">
+        <p class="review-preview-text">Absolut bästa burgaren — extremt god smak och perfekt stekt.</p>
+        <p class="review-preview-source">— Google Maps</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="comp-group reveal">
+      <h3 class="comp-group-title">NAVIGATION</h3>
+      <p class="comp-group-desc">Fast nav med blur-bakgrund, amber underline vid hover</p>
+      <div class="nav-preview">
+        <div class="nav-preview-logo">
+          <svg viewBox="-3 0 32 32" aria-hidden="true" style="width:22px;height:22px;"><g transform="translate(-415,-411)" fill="#e8a020"><path d="M428.5,441 C422.148,441 417,435.641 417,429.625 C417,428.228 417.031,427.094 418,426 C417.895,426.634 419.397,432.055 424.305,431.771 C424.092,427.652 422.978,417.561 428.152,414.073 C427.695,419.557 429.038,426.924 435.029,428 C434.686,425.801 434.727,422.143 436.267,421.467 C436.433,424.836 438.924,426.914 438.924,430.152 C438.924,436.016 433.251,441 428.5,441Z"/><path d="M437.905,417.953 C433.52,419.203 432.717,422.748 433,425 C429.872,421.322 430,417.093 430,411 C419.968,414.783 422.301,425.688 422,429 C419.477,426.935 419,422 419,422 C416.336,423.371 415,427.031 415,430 C415,437.18 420.82,443 428,443 C435.18,443 441,437.18 441,430 C441,425.733 437.867,423.765 437.905,417.953Z"/></g></svg>
+          SMASHIN<span>'</span> BURGERS
+        </div>
+        <ul class="nav-preview-links">
+          <li><a href="#">Meny</a></li>
+          <li><a href="#">Omdömen</a></li>
+          <li><a href="#">Hitta hit</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </div>
+      <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--ash);line-height:1.8;">
+        Bakgrund: rgba(10,10,10,0.85) + backdrop-filter: blur(20px)<br>
+        Kantlinje: 1px solid rgba(232,160,32,0.1)<br>
+        Krymper vid scroll: padding 1rem → 0.6rem
+      </p>
+    </div>
+
+    <!-- Formulär -->
+    <div class="comp-group reveal">
+      <h3 class="comp-group-title">FORMULÄRFÄLT</h3>
+      <p class="comp-group-desc">Charcoal bakgrund, smoke-kant, amber focus-state</p>
+      <div class="form-preview">
+        <div class="form-group">
+          <label>Namn</label>
+          <input type="text" placeholder="Ditt namn">
+        </div>
+        <div class="form-group">
+          <label>E-post</label>
+          <input type="email" placeholder="din@email.se">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 04 TONALITET ========== -->
+<section class="tone-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">04</div>
+      <p class="section-tag">Tonalitet</p>
+      <h2 class="section-title">VARUMÄRKETS RÖST</h2>
+      <p class="section-desc">Smashin' Burgers kommunicerar med en avslappnad, rökig och självsäker ton. Gatan möter hantverk.</p>
+    </div>
+
+    <div class="tone-grid reveal">
+      <div class="tone-card">
+        <h3 class="tone-card-title">RÖKIG</h3>
+        <p class="tone-card-text">Kommunikationen ska kännas som glöd genom rök — varm, mörk och inbjudande. Ingen sterilitet, inget korporativt. Texturen är grovkornig och äkta.</p>
+      </div>
+      <div class="tone-card">
+        <h3 class="tone-card-title">AVSLAPPNAD</h3>
+        <p class="tone-card-text">Inga formella fraser. Tonen är som att prata med en kompis som råkar göra riktigt bra burgers. Kort, direkt, och med ett leende bakom orden.</p>
+      </div>
+      <div class="tone-card">
+        <h3 class="tone-card-title">SJÄLVSÄKER</h3>
+        <p class="tone-card-text">Vi vet att våra burgers är bra. Inte skrytsam, men med tydlig stolthet. Låt produkten tala — krispiga kanter, smält ost, handpressat kött.</p>
+      </div>
+      <div class="tone-card">
+        <h3 class="tone-card-title">LOKAL</h3>
+        <p class="tone-card-text">Söderhamn är hemmaplan. Från foodtruck till restaurang vid ån — resan är en del av berättelsen. Lokalförankring utan att vara provinsiell.</p>
+      </div>
+    </div>
+
+    <div class="tone-examples reveal">
+      <h3 style="font-family:var(--font-display);font-size:1.5rem;letter-spacing:0.08em;color:var(--amber);margin-bottom:2rem;">GÖR & GÖR INTE</h3>
+
+      <div class="tone-example">
+        <div class="tone-do">
+          <span class="tone-do-label">Gör</span>
+          <p>"Handpressade, krispiga smash burgers med smält ost — precis som de ska vara."</p>
+        </div>
+        <div class="tone-dont">
+          <span class="tone-dont-label">Gör inte</span>
+          <p>"Vi erbjuder ett brett utbud av premiumhamburgare tillagade med noggrant utvalda ingredienser."</p>
+        </div>
+      </div>
+
+      <div class="tone-example">
+        <div class="tone-do">
+          <span class="tone-do-label">Gör</span>
+          <p>"Från foodtruck till restaurang vid ån."</p>
+        </div>
+        <div class="tone-dont">
+          <span class="tone-dont-label">Gör inte</span>
+          <p>"Vår resa har tagit oss från en mobil servering till en permanent restauranglokal."</p>
+        </div>
+      </div>
+
+      <div class="tone-example">
+        <div class="tone-do">
+          <span class="tone-do-label">Gör</span>
+          <p>"Välj din burger."</p>
+        </div>
+        <div class="tone-dont">
+          <span class="tone-dont-label">Gör inte</span>
+          <p>"Utforska vårt menysortiment och välj den hamburgare som passar dig bäst."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 05 VISUELLA DETALJER ========== -->
+<section class="colors-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-num">05</div>
+      <p class="section-tag">Visuella detaljer</p>
+      <h2 class="section-title">EFFEKTER & TEXTUR</h2>
+      <p class="section-desc">De subtila detaljerna som skapar "street smoke"-känslan. Korn, glöd, skuggor och rörelse.</p>
+    </div>
+
+    <div class="typo-grid">
+      <div class="typo-card reveal">
+        <span class="typo-label">Kornöverlägg (Grain)</span>
+        <p style="font-size:0.9rem;color:var(--ash);line-height:1.7;margin-bottom:1rem;">En fast SVG-baserad brus-textur ligger ovanpå hela sidan med opacity 0.03. Ger en filmisk, analog känsla som förstärker den rökiga estetiken.</p>
+        <div class="css-ref" style="margin-top:0;">
+          <code><span class="prop">body::after</span> {
+  <span class="prop">position:</span> <span class="val">fixed</span>;
+  <span class="prop">inset:</span> <span class="val">0</span>;
+  <span class="prop">opacity:</span> <span class="val">0.03</span>;
+  <span class="prop">background-image:</span> <span class="val">url("data:image/svg+xml,...")</span>;
+  <span class="prop">pointer-events:</span> <span class="val">none</span>;
+}</code>
+        </div>
+      </div>
+
+      <div class="typo-card reveal">
+        <span class="typo-label">Animationer</span>
+        <p style="font-size:0.9rem;color:var(--ash);line-height:1.7;margin-bottom:1rem;">Scroll-reveal med IntersectionObserver. Element glider upp med mjuk easing. Hover-effekter lyfter element subtilt.</p>
+        <div class="css-ref" style="margin-top:0;">
+          <code><span class="prop">.reveal</span> {
+  <span class="prop">opacity:</span> <span class="val">0</span>;
+  <span class="prop">transform:</span> <span class="val">translateY(40px)</span>;
+  <span class="prop">transition:</span> <span class="val">all 0.8s cubic-bezier(0.16, 1, 0.3, 1)</span>;
+}
+
+<span class="prop">Hover-lyft:</span> <span class="val">translateY(-2px) till translateY(-4px)</span>
+<span class="prop">Hover-glöd:</span> <span class="val">box-shadow med rgba(amber, 0.3)</span></code>
+        </div>
+      </div>
+
+      <div class="typo-card reveal">
+        <span class="typo-label">Glasmorfism & Bakgrunder</span>
+        <p style="font-size:0.9rem;color:var(--ash);line-height:1.7;margin-bottom:1rem;">Navigationen använder glasmorfism med blur. Hero-bilden dämpar med gradient-overlay. Sektioner alternerar mellan --black och --off-black.</p>
+        <div class="css-ref" style="margin-top:0;">
+          <code><span class="prop">nav</span> {
+  <span class="prop">background:</span> <span class="val">rgba(10,10,10,0.85)</span>;
+  <span class="prop">backdrop-filter:</span> <span class="val">blur(20px)</span>;
+  <span class="prop">border-bottom:</span> <span class="val">1px solid rgba(232,160,32,0.1)</span>;
+}
+
+<span class="prop">Hero overlay:</span>
+  <span class="val">linear-gradient(180deg,
+    rgba(10,10,10,0.6) 0%,
+    rgba(10,10,10,0.2) 40%,
+    rgba(10,10,10,0.8) 100%)</span></code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="brand-footer">
+  <p class="brand-footer-text">Brandguide — Smashin' Burgers — 2026</p>
+  <div class="brand-footer-divider">
+    <span class="line" aria-hidden="true"></span>
+    <span style="display: flex; align-items: center; gap: 12px;"><span style="flex: 0 0 40px; height: 1px; background: currentColor; opacity: 0.4;"></span> Producerad av <a href="https://claytopmedia.se" style="color: inherit; text-decoration: underline;">Claytop Media</a> <span style="flex: 0 0 40px; height: 1px; background: currentColor; opacity: 0.4;"></span></span>
+    <span class="line" aria-hidden="true"></span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
